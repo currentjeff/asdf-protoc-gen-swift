@@ -2,7 +2,7 @@
 
 # asdf-protoc-gen-swift [![Build](https://github.com/currentjeff/asdf-protoc-gen-swift/actions/workflows/build.yml/badge.svg)](https://github.com/currentjeff/asdf-protoc-gen-swift/actions/workflows/build.yml) [![Lint](https://github.com/currentjeff/asdf-protoc-gen-swift/actions/workflows/lint.yml/badge.svg)](https://github.com/currentjeff/asdf-protoc-gen-swift/actions/workflows/lint.yml)
 
-[protoc-gen-swift](https://github.com/currentjeff/asdf-protoc-gen-swift) plugin for the [asdf version manager](https://asdf-vm.com).
+[protoc-gen-swift](https://github.com/apple/swift-protobuf/blob/main/Documentation/PLUGIN.md) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
@@ -15,18 +15,13 @@
 
 # Dependencies
 
-**TODO: adapt this section**
-
-- `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
+- `bash`, `curl`, `unzip`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
 
 # Install
 
 Plugin:
 
 ```shell
-asdf plugin add protoc-gen-swift
-# or
 asdf plugin add protoc-gen-swift https://github.com/currentjeff/asdf-protoc-gen-swift.git
 ```
 

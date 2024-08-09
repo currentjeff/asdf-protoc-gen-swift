@@ -2,8 +2,7 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for protoc-gen-swift.
-GH_REPO="https://github.com/currentjeff/asdf-protoc-gen-swift"
+GH_REPO="https://github.com/apple/swift-protobuf"
 TOOL_NAME="protoc-gen-swift"
 TOOL_TEST="protoc-gen-swift --version"
 
@@ -41,8 +40,7 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for protoc-gen-swift
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	url="$GH_REPO/archive/refs/tags/${version}.zip"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
@@ -59,9 +57,11 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
-		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+		cd "$ASDF_DOWNLOAD_PATH/swift-protobuf-$version"
+		local bin_path=$(swift build -c release --show-bin-path)
+		swift build -c release
+		cp -r "$bin_path/$TOOL_NAME" "$install_path"
 
-		# TODO: Assert protoc-gen-swift executable exists.
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
 		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
